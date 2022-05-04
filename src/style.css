@@ -1,0 +1,133 @@
+body {
+  font-family: "Roboto", sans-serif;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ced4da;
+}
+
+#bg {
+  background-image: url("https://images.unsplash.com/photo-1627821549647-26689ff539bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  padding: 5px 20px;
+  height: 90%;
+  width: 525px;
+  overflow-y: auto;
+}
+
+.local-links {
+  margin: 12px 0;
+}
+
+.local-links strong {
+  margin-right: 8px;
+}
+
+.local-links-locations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.local-links-locations li {
+  margin: 0 7px;
+}
+
+.search form {
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.search form input {
+  background: transparent;
+  border: 0;
+  color: #ffffff;
+  padding: 0 4px;
+}
+
+.search form input:focus {
+  background: transparent;
+  color: #ffffff;
+}
+
+.heading {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 8px 15px;
+}
+
+.heading h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+#current-forecast {
+  padding-bottom: 8px;
+}
+
+.heading h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.day {
+  box-shadow: 1px 1px 4px #ced4da;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.day h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.day img {
+  display: block;
+  margin: 14px auto;
+  height: 45px;
+}
+
+.footer {
+  position: absolute;
+  font-size: 10px;
+  bottom: 8px;
+  color: rgba(245, 245, 245, 0.5);
+}
+
+.footer a {
+  color: rgba(245, 245, 245, 0.808);
+}
