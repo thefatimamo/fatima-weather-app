@@ -93,8 +93,8 @@ a:hover {
   margin: 0;
 }
 
-#current-forecast {
-  padding-bottom: 8px;
+#description {
+  text-transform: capitalize;
 }
 
 .heading h2 {
