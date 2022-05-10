@@ -61,17 +61,17 @@ function updateCity(response) {
 }
 
 function updateForecast(response) {
-  const forecasts = response.data.daily;
-  const dailyForecasts = document.querySelectorAll(".day");
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let forecasts = response.data.daily;
+  let dailyForecasts = document.querySelectorAll(".day");
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   dailyForecasts.forEach(function (day, idx) {
-    const forecast = forecasts[idx + 1];
-    const date = new Date(forecast.dt * 1000);
-    const tempHigh = Math.round(forecast.temp.max);
-    const tempLow = Math.round(forecast.temp.min);
-    const icon = forecast.weather[0].icon;
-    const weatherDesc = forecast.weather[0].description;
+    let forecast = forecasts[idx + 1];
+    let date = new Date(forecast.dt * 1000);
+    let tempHigh = Math.round(forecast.temp.max);
+    let tempLow = Math.round(forecast.temp.min);
+    let icon = forecast.weather[0].icon;
+    let weatherDesc = forecast.weather[0].description;
 
     day.querySelector("h3").innerHTML = days[date.getDay()];
     day.querySelector(
