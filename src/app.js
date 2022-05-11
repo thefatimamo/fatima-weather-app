@@ -4,6 +4,8 @@ let apiKey = "aeb2b3f4a790f66fe13d4f5b8325028b";
 let apiWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}`;
 let apiForecastUrl = `https://api.openweathermap.org/data/2.5/onecall?appid=${apiKey}`;
 
+let daysAbbr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 function getWeatherByCity() {
   axios
     .get(`${apiWeatherUrl}&units=${units}&q=${currentCity}`)
@@ -38,17 +40,38 @@ function updateCity(response) {
     unitImperial.classList.add("fw-bold");
   }
 
+  let dateTime = moment(new Date()).utc().add(response.data.timezone, "s");
+
+  let currentDayTimeElement = document.querySelector("#current-day-time");
+  currentDayTimeElement.innerHTML = dateTime.format("dddd, h:mm a");
+
+  let currentDate = document.querySelector("#current-date");
+  currentDate.innerHTML = dateTime.format("MMMM D, YYYY");
+
   let cityElement = document.querySelector("#current-city");
   cityElement.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
+
   let temperatureElement = document.querySelector("#current-temperature");
   temperatureElement.innerHTML = `${Math.round(
     response.data.main.temp
   )}˚${unitTemp}`;
-  let descriptionElement = document.querySelector("#description");
+
+  let descriptionElement = document.querySelector("#current-description");
   descriptionElement.innerHTML = response.data.weather[0].description;
-  let humidityElement = document.querySelector("#humidity");
+
+  let highElement = document.querySelector("#current-high");
+  highElement.innerHTML = Math.round(response.data.main.temp_max);
+
+  let lowElement = document.querySelector("#current-low");
+  lowElement.innerHTML = Math.round(response.data.main.temp_min);
+
+  let feelsLikeElement = document.querySelector("#current-feels-like");
+  feelsLikeElement.innerHTML = Math.round(response.data.main.feels_like);
+
+  let humidityElement = document.querySelector("#current-humidity");
   humidityElement.innerHTML = response.data.main.humidity;
-  let windElement = document.querySelector("#wind");
+
+  let windElement = document.querySelector("#current-wind");
   windElement.innerHTML = `${Math.round(
     response.data.wind.speed
   )} ${unitSpeed}`;
@@ -63,7 +86,6 @@ function updateCity(response) {
 function updateForecast(response) {
   let forecasts = response.data.daily;
   let dailyForecasts = document.querySelectorAll(".day");
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   dailyForecasts.forEach(function (day, idx) {
     let forecast = forecasts[idx + 1];
@@ -73,7 +95,7 @@ function updateForecast(response) {
     let icon = forecast.weather[0].icon;
     let weatherDesc = forecast.weather[0].description;
 
-    day.querySelector("h3").innerHTML = days[date.getDay()];
+    day.querySelector("h3").innerHTML = daysAbbr[date.getDay()];
     day.querySelector(
       ".date"
     ).innerHTML = `${date.getMonth()}/${date.getDate()}`;
@@ -127,55 +149,7 @@ function onCurrent(event) {
 let currentLocation = document.querySelector("#btn-current");
 currentLocation.addEventListener("click", onCurrent);
 
-let currentDay = new Date();
-let currentDayFormatted = new Intl.DateTimeFormat("default", {
-  hour12: true,
-  hour: "numeric",
-  minute: "numeric",
-})
-  .format(currentDay)
-  .toLowerCase();
-
-let currentDayTime = document.querySelector("#current-day-time");
-
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[currentDay.getDay()];
-currentDayTime.innerHTML = `${day}, ${currentDayFormatted}`;
-
-let currentDateNow = new Date();
-
-let currentDate = document.querySelector("#current-date");
-
-let newDate = currentDateNow.getDate();
-let newYear = currentDateNow.getFullYear();
-
-let months = [
-  "January",
-  "Febreuary",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-let newMonth = months[currentDateNow.getMonth()];
-
-currentDate.innerHTML = `${newMonth} ${newDate}, ${newYear}`;
-
-const localCities = document.querySelectorAll(".local-city");
+let localCities = document.querySelectorAll(".local-city");
 localCities.forEach(function (city) {
   city.addEventListener("click", function (event) {
     event.preventDefault();
