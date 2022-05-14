@@ -97,6 +97,10 @@ a:hover {
   text-transform: capitalize;
 }
 
+#current-forecast {
+  margin-bottom: -20px;
+}
+
 .heading h2 {
   font-size: 18px;
   margin: 0;
